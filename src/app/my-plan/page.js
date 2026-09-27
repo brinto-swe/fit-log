@@ -11,8 +11,8 @@ export default function MyPlanPage() {
 	const [sortBy, setSortBy] = useState("duration");
 	const visibleExercises = activeTab === "plan" ? plan : saved;
 	const sortedExercises = [...visibleExercises].sort((first, second) => {
-		if (sortBy === "name") return first.name.localeCompare(second.name);
 		if (sortBy === "calories") return second.caloriesBurned - first.caloriesBurned;
+		if (sortBy === "rating") return second.rating - first.rating;
 		return first.duration - second.duration;
 	});
 	const summary = plan.reduce(
@@ -91,8 +91,8 @@ export default function MyPlanPage() {
 						className="select select-sm border-[#292c35] bg-[#15161d] text-zinc-300"
 					>
 						<option value="duration">Duration</option>
-						<option value="name">Name</option>
 						<option value="calories">Calories</option>
+						<option value="rating">Rating</option>
 					</select>
 				</label>
 			</div>
