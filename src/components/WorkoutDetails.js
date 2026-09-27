@@ -21,14 +21,16 @@ function MetricRow({ label, value }) {
 	);
 }
 
-export default function WorkoutDetails({ id }) {
+export default function WorkoutDetails({ id, initialWorkout = null }) {
 	const { plan, saved, isReady, addToPlan, toggleSaved } = useWorkoutPlan();
-	const [workout, setWorkout] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
+	const [workout, setWorkout] = useState(initialWorkout);
+	const [isLoading, setIsLoading] = useState(initialWorkout === null);
 	const isInPlan = plan.some((item) => String(item.id) === String(id));
 	const isSaved = saved.some((item) => String(item.id) === String(id));
 
 	useEffect(() => {
+		if (initialWorkout) return;
+
 		let isActive = true;
 
 		async function loadWorkout() {
@@ -58,7 +60,7 @@ export default function WorkoutDetails({ id }) {
 		return () => {
 			isActive = false;
 		};
-	}, [id]);
+	}, [id, initialWorkout]);
 
 	if (isLoading) {
 		return (
