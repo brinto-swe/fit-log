@@ -15,7 +15,7 @@ export default function MyPlanPage() {
 		if (sortBy === "rating") return second.rating - first.rating;
 		return first.duration - second.duration;
 	});
-	const summary = plan.reduce(
+	const summary = visibleExercises.reduce(
 		(result, exercise) => ({
 			exercises: result.exercises + 1,
 			minutes: result.minutes + exercise.duration,
@@ -42,7 +42,7 @@ export default function MyPlanPage() {
 			</header>
 
 			<section
-				aria-label="Today's plan summary"
+				aria-label={activeTab === "plan" ? "Today's plan summary" : "Saved workouts summary"}
 				className="grid grid-cols-1 divide-y divide-white/5 rounded-xl border border-[#292c35] bg-[#15161d] sm:grid-cols-3 sm:divide-x sm:divide-y-0"
 			>
 				{[
