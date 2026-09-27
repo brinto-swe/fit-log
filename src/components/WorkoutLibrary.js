@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const FITLOG_API_URLS = [
@@ -76,8 +77,9 @@ export default function WorkoutLibrary() {
 			) : (
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
 					{workouts.map((workout) => (
-						<article
+						<Link
 							key={workout.id}
+							href={`/workouts/${workout.id}`}
 							className="card overflow-hidden rounded-xl border border-[#292c35] bg-[#15161d] transition-colors hover:border-[#b7ff00]/50"
 						>
 							<figure className="relative aspect-[16/9] overflow-hidden bg-[#20222a]">
@@ -113,7 +115,7 @@ export default function WorkoutLibrary() {
 									</span>
 								</div>
 							</div>
-						</article>
+						</Link>
 					))}
 				</div>
 			)}
