@@ -25,7 +25,7 @@ export default function BannerPage() {
 							watch the week&apos;s work add up.
 						</p>
 						<a
-							href="#workouts"
+							href="/workouts"
 							className="btn mt-6 min-h-11 border-0 bg-[#b7ff00] px-6 text-xs font-bold uppercase text-black hover:bg-[#c8ff4a]"
 						>
 							Browse workouts
