@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useWorkoutPlan } from "@/components/WorkoutPlanProvider";
 import logoImage from "../assets/logo.png";
 
 export default function Navbar() {
   const pathname = usePathname();
   const isPlanPage = pathname === "/my-plan";
+  const { plan, saved, isReady } = useWorkoutPlan();
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0b0c0f]/95 shadow-lg shadow-black/10 backdrop-blur">
@@ -39,10 +41,12 @@ export default function Navbar() {
         <div className="ml-auto flex items-center gap-3">
           <Link href="/my-plan" className="flex items-center gap-2 text-xs text-zinc-300">
             Plan
-            <span className="badge badge-xs border-0 bg-[#a8f000] text-black">0</span>
+            <span className="badge badge-xs border-0 bg-[#a8f000] text-black">
+              {isReady ? plan.length : 0}
+            </span>
           </Link>
-          <Link href="/my-plan#saved" className="hidden text-xs text-zinc-400 hover:text-white sm:block">
-            Saved
+          <Link href="/my-plan#saved" className="hidden items-center gap-2 text-xs text-zinc-400 hover:text-white sm:flex">
+            Saved <span className="badge badge-xs border border-white/15 bg-transparent text-zinc-300">{isReady ? saved.length : 0}</span>
           </Link>
           <Link
             href="/my-plan#saved"

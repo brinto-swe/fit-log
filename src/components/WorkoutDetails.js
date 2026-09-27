@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useWorkoutPlan } from "@/components/WorkoutPlanProvider";
 
 const API_URLS = [
 	"https://api.api-store.workers.dev/api/fitlog",
@@ -19,10 +20,11 @@ function MetricRow({ label, value }) {
 }
 
 export default function WorkoutDetails({ id }) {
+	const { plan, saved, isReady, addToPlan, toggleSaved } = useWorkoutPlan();
 	const [workout, setWorkout] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
-	const [isInPlan, setIsInPlan] = useState(false);
-	const [isSaved, setIsSaved] = useState(false);
+	const isInPlan = plan.some((item) => String(item.id) === String(id));
+	const isSaved = saved.some((item) => String(item.id) === String(id));
 
 	useEffect(() => {
 		let isActive = true;
@@ -138,15 +140,17 @@ export default function WorkoutDetails({ id }) {
 					<button
 						type="button"
 						aria-pressed={isInPlan}
-						onClick={() => setIsInPlan((current) => !current)}
-						className={`btn border-0 px-5 text-xs font-bold ${isInPlan ? "bg-white/10 text-white" : "bg-[#b7ff00] text-black hover:bg-[#c8ff4a]"}`}
+						disabled={!isReady || isInPlan}
+						onClick={() => addToPlan(workout)}
+						className={`btn border-0 px-5 text-xs font-bold ${isInPlan ? "bg-white/10 text-zinc-400" : "bg-[#b7ff00] text-black hover:bg-[#c8ff4a] disabled:bg-white/10 disabled:text-zinc-500"}`}
 					>
 						{isInPlan ? "Added to today's plan" : "Add to today's plan"}
 					</button>
 					<button
 						type="button"
 						aria-pressed={isSaved}
-						onClick={() => setIsSaved((current) => !current)}
+						disabled={!isReady}
+						onClick={() => toggleSaved(workout)}
 						className="btn border border-white/15 bg-transparent px-5 text-xs text-zinc-300 hover:border-white/30 hover:bg-white/5"
 					>
 						{isSaved ? "Saved" : "Save for later"}
