@@ -2,6 +2,11 @@
 
 FitLog is a workout library and lightweight training planner. Browse exercises, review their instructions, and build a daily plan that stays saved in your browser.
 
+## Project Links
+
+- **Live app:** [fitlog-workout-27.netlify.app](https://fitlog-workout-27.netlify.app/)
+- **GitHub repository:** [brinto-swe/fit-log](https://github.com/brinto-swe/fit-log)
+
 ## Technologies
 
 - Next.js 16 App Router
