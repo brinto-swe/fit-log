@@ -64,13 +64,13 @@ export default function WorkoutDetails({ id, initialWorkout = null }) {
 
 	if (isLoading) {
 		return (
-			<main className="mx-auto grid w-full max-w-[1440px] flex-1 gap-8 px-4 py-8 sm:px-6 lg:grid-cols-2 lg:gap-10 lg:px-8">
-				<div className="skeleton aspect-[4/5] w-full rounded-xl bg-white/5" />
-				<div className="space-y-5 py-2">
-					<div className="skeleton h-10 w-3/4 bg-white/5" />
-					<div className="skeleton h-16 w-full bg-white/5" />
-					<div className="skeleton h-56 w-full bg-white/5" />
-				</div>
+			<main
+				className="mx-auto flex min-h-[60vh] w-full max-w-[1440px] flex-1 flex-col items-center justify-center gap-3 px-4 py-8 sm:px-6 lg:px-8"
+				role="status"
+				aria-live="polite"
+			>
+				<span className="loading loading-spinner loading-lg text-[#b7ff00]" aria-hidden="true" />
+				<span className="text-sm text-zinc-400">Loading workout details...</span>
 			</main>
 		);
 	}

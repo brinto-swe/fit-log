@@ -68,22 +68,12 @@ export default function WorkoutLibrary() {
 
       {isLoading ? (
         <div
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
-          aria-label="Loading workouts"
+          className="flex min-h-60 flex-col items-center justify-center gap-3 rounded-xl border border-[#292c35] bg-[#15161d]"
+          role="status"
+          aria-live="polite"
         >
-          {Array.from({ length: 6 }, (_, index) => (
-            <div
-              key={index}
-              className="card overflow-hidden rounded-xl border border-[#292c35] bg-[#15161d]"
-            >
-              <div className="skeleton aspect-[16/9] rounded-none bg-white/5" />
-              <div className="card-body gap-3 p-4">
-                <div className="skeleton h-4 w-24 bg-white/5" />
-                <div className="skeleton h-5 w-2/3 bg-white/5" />
-                <div className="skeleton h-4 w-1/2 bg-white/5" />
-              </div>
-            </div>
-          ))}
+          <span className="loading loading-spinner loading-lg text-[#b7ff00]" aria-hidden="true" />
+          <span className="text-sm text-zinc-400">Loading workouts...</span>
         </div>
       ) : workouts === null ? (
         <div
