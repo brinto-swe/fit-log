@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useWorkoutPlan } from "@/components/WorkoutPlanProvider";
+import { IoBagAddOutline } from "react-icons/io5";
+import { IoBookmarkOutline } from "react-icons/io5";
 
 const API_URLS = [
 	"https://api.api-store.workers.dev/api/fitlog",
@@ -144,6 +146,7 @@ export default function WorkoutDetails({ id }) {
 						onClick={() => addToPlan(workout)}
 						className={`btn border-0 px-5 text-xs font-bold ${isInPlan ? "bg-white/10 text-zinc-400" : "bg-[#b7ff00] text-black hover:bg-[#c8ff4a] disabled:bg-white/10 disabled:text-zinc-500"}`}
 					>
+                        <IoBagAddOutline />
 						{isInPlan ? "Added to today's plan" : "Add to today's plan"}
 					</button>
 					<button
@@ -153,6 +156,7 @@ export default function WorkoutDetails({ id }) {
 						onClick={() => toggleSaved(workout)}
 						className="btn border border-white/15 bg-transparent px-5 text-xs text-zinc-300 hover:border-white/30 hover:bg-white/5"
 					>
+                        <IoBookmarkOutline />
 						{isSaved ? "Saved" : "Save for later"}
 					</button>
 				</div>
